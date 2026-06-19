@@ -2,10 +2,7 @@
 import javax.swing.JOptionPane;
 import java.util.List;
 
-/**
- * Classe principal do sistema.
- * Usa JOptionPane para fazer um menu simples (entrada e saída de dados).
- */
+
 public class Main {
 
     static VeiculoDAO veiculoDAO = new VeiculoDAO();
