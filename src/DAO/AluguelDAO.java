@@ -1,8 +1,14 @@
+package DAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
+
+import model.Aluguel;
+import model.Cliente;
+import model.Veiculo;
 
 
 public class AluguelDAO {
@@ -28,7 +34,6 @@ public class AluguelDAO {
         }
     }
 
-    // ===== Método que antes ficava na Main =====
 
     public void realizarViaMenu() {
         // Lista clientes
@@ -47,7 +52,6 @@ public class AluguelDAO {
         String idClienteTexto = JOptionPane.showInputDialog("Digite o ID do cliente:");
         if (idClienteTexto == null) return;
 
-        // Lista veículos disponíveis
         List<Veiculo> veiculos = veiculoDAO.listarDisponiveis();
         if (veiculos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não há veículos disponíveis.");

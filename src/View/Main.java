@@ -1,4 +1,10 @@
+package View;
+
 import javax.swing.JOptionPane;
+
+import DAO.AluguelDAO;
+import DAO.ClienteDAO;
+import DAO.VeiculoDAO;
 
 
 public class Main {

@@ -1,3 +1,5 @@
+package DAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+
+import model.Cliente;
 
 
 public class ClienteDAO {
@@ -40,7 +44,6 @@ public class ClienteDAO {
         return lista;
     }
 
-    // ===== Métodos que antes ficavam na Main =====
 
     public void cadastrarViaMenu() {
         String nome = JOptionPane.showInputDialog("Nome do cliente:");

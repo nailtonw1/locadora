@@ -1,3 +1,5 @@
+package DAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,6 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+
+import model.Carro;
+import model.Moto;
+import model.Veiculo;
 
 
 public class VeiculoDAO {
@@ -100,7 +106,6 @@ public class VeiculoDAO {
         return v;
     }
 
-    // ===== Métodos que antes ficavam na Main =====
 
     public void cadastrarCarroViaMenu() {
         String modelo = JOptionPane.showInputDialog("Modelo do carro:");

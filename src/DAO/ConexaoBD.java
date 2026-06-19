@@ -1,3 +1,4 @@
+package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -5,9 +6,9 @@ import javax.swing.JOptionPane;
 
 public class ConexaoBD {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/locadora";
-    private static final String USUARIO = "root";
-    private static final String SENHA = "Nail@1597";
+    private static final String URL = "**********";
+    private static final String USUARIO = "*****";
+    private static final String SENHA = "******";
 
     public static Connection conectar() {
         try {
