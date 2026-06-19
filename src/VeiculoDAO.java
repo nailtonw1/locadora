@@ -1,5 +1,3 @@
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 public class VeiculoDAO {
@@ -99,5 +98,83 @@ public class VeiculoDAO {
         v.setId(rs.getInt("id"));
         v.setDisponivel(rs.getBoolean("disponivel"));
         return v;
+    }
+
+    // ===== Métodos que antes ficavam na Main =====
+
+    public void cadastrarCarroViaMenu() {
+        String modelo = JOptionPane.showInputDialog("Modelo do carro:");
+        if (modelo == null) return;
+
+        String placa = JOptionPane.showInputDialog("Placa:");
+        if (placa == null) return;
+
+        String valorTexto = JOptionPane.showInputDialog("Valor da diária (R$):");
+        if (valorTexto == null) return;
+
+        String portasTexto = JOptionPane.showInputDialog("Número de portas:");
+        if (portasTexto == null) return;
+
+        try {
+            double valorDiaria = Double.parseDouble(valorTexto.replace(",", "."));
+            int numPortas = Integer.parseInt(portasTexto.trim());
+
+            Carro carro = new Carro(modelo, placa, valorDiaria, numPortas);
+            cadastrarCarro(carro);
+
+            JOptionPane.showMessageDialog(null, "Carro cadastrado com sucesso!");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valores numéricos inválidos!");
+        }
+    }
+
+    public void cadastrarMotoViaMenu() {
+        String modelo = JOptionPane.showInputDialog("Modelo da moto:");
+        if (modelo == null) return;
+
+        String placa = JOptionPane.showInputDialog("Placa:");
+        if (placa == null) return;
+
+        String valorTexto = JOptionPane.showInputDialog("Valor da diária (R$):");
+        if (valorTexto == null) return;
+
+        String cilindradaTexto = JOptionPane.showInputDialog("Cilindrada (cc):");
+        if (cilindradaTexto == null) return;
+
+        try {
+            double valorDiaria = Double.parseDouble(valorTexto.replace(",", "."));
+            int cilindrada = Integer.parseInt(cilindradaTexto.trim());
+
+            Moto moto = new Moto(modelo, placa, valorDiaria, cilindrada);
+            cadastrarMoto(moto);
+
+            JOptionPane.showMessageDialog(null, "Moto cadastrada com sucesso!");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valores numéricos inválidos!");
+        }
+    }
+
+    public void listarDisponiveisViaMenu() {
+        List<Veiculo> veiculos = listarDisponiveis();
+
+        if (veiculos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum veículo disponível no momento.");
+            return;
+        }
+
+        StringBuilder texto = new StringBuilder("Veículos disponíveis:\n\n");
+        for (Veiculo v : veiculos) {
+            // Aqui usamos v.toString(), que por sua vez chama getTipo() -> POLIMORFISMO
+            texto.append("ID ").append(v.getId()).append(" - ").append(v).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, texto.toString());
+    }
+
+    public Veiculo buscarPorId(List<Veiculo> lista, int id) {
+        for (Veiculo v : lista) {
+            if (v.getId() == id) return v;
+        }
+        return null;
     }
 }

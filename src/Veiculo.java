@@ -1,12 +1,11 @@
 
+public abstract class Veiculo implements Alugavel {
 
-public abstract class Veiculo {
-
-    protected int id;
-    protected String modelo;
-    protected String placa;
+    private int id;
+    private String modelo;
+    private String placa;
     protected double valorDiaria;
-    protected boolean disponivel;
+    private boolean disponivel;
 
     public Veiculo(String modelo, String placa, double valorDiaria) {
         this.modelo = modelo;
@@ -15,28 +14,36 @@ public abstract class Veiculo {
         this.disponivel = true;
     }
 
-
+    @Override
     public abstract double calcularValorAluguel(int dias);
 
+    @Override
     public abstract String getTipo();
-
 
     @Override
     public String toString() {
-        return getTipo() + " | " + modelo + " | Placa: " + placa
-                + " | Diária: R$ " + valorDiaria
-                + " | " + (disponivel ? "Disponível" : "Alugado");
+        return getTipo() + " - " + modelo + " | Placa: " + placa
+                + " | Diária: R$ " + String.format("%.2f", valorDiaria);
     }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
     public String getModelo() { return modelo; }
-
     public String getPlaca() { return placa; }
-
     public double getValorDiaria() { return valorDiaria; }
 
+    @Override
     public boolean isDisponivel() { return disponivel; }
     public void setDisponivel(boolean disponivel) { this.disponivel = disponivel; }
+}
+
+
+interface Alugavel {
+
+    double calcularValorAluguel(int dias);
+
+    String getTipo();
+
+    boolean isDisponivel();
 }

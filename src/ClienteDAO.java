@@ -1,5 +1,3 @@
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 public class ClienteDAO {
@@ -39,5 +38,43 @@ public class ClienteDAO {
             System.out.println("Erro ao listar clientes: " + e.getMessage());
         }
         return lista;
+    }
+
+    // ===== Métodos que antes ficavam na Main =====
+
+    public void cadastrarViaMenu() {
+        String nome = JOptionPane.showInputDialog("Nome do cliente:");
+        if (nome == null || nome.isBlank()) return;
+
+        String cpf = JOptionPane.showInputDialog("CPF do cliente:");
+        if (cpf == null) return;
+
+        Cliente cliente = new Cliente(nome, cpf);
+        cadastrar(cliente);
+
+        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+    }
+
+    public void listarViaMenu() {
+        List<Cliente> clientes = listarTodos();
+
+        if (clientes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum cliente cadastrado.");
+            return;
+        }
+
+        StringBuilder texto = new StringBuilder("Clientes cadastrados:\n\n");
+        for (Cliente c : clientes) {
+            texto.append("ID ").append(c.getId()).append(" - ").append(c).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, texto.toString());
+    }
+
+    public Cliente buscarPorId(List<Cliente> lista, int id) {
+        for (Cliente c : lista) {
+            if (c.getId() == id) return c;
+        }
+        return null;
     }
 }
