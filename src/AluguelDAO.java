@@ -20,7 +20,6 @@ public class AluguelDAO {
             ps.setDouble(4, aluguel.getValorTotal());
             ps.executeUpdate();
 
-            // Depois de alugar, o veículo fica indisponível
             veiculoDAO.atualizarDisponibilidade(aluguel.getVeiculo().getId(), false);
 
         } catch (SQLException e) {
