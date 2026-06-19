@@ -12,8 +12,6 @@ public class Moto extends Veiculo {
 
     @Override
     public double calcularValorAluguel(int dias) {
-        // Regra simples: valor da diária x dias, sem taxa extra
-        // mas com 10% de desconto a partir de 5 dias
         double total = valorDiaria * dias;
         if (dias >= 5) {
             total = total * 0.9;

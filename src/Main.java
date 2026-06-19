@@ -26,7 +26,7 @@ public class Main {
 
             String entrada = JOptionPane.showInputDialog(null, menu, "Menu", JOptionPane.PLAIN_MESSAGE);
 
-            // Se o usuário clicar em "Cancelar" ou fechar, encerra o programa
+
             if (entrada == null) {
                 break;
             }

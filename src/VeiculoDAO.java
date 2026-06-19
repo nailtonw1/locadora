@@ -11,7 +11,6 @@ import java.util.List;
 
 public class VeiculoDAO {
 
-    // Cadastra um carro no banco
     public void cadastrarCarro(Carro carro) {
         String sql = "INSERT INTO veiculos (tipo, modelo, placa, valor_diaria, disponivel, num_portas) "
                 + "VALUES ('CARRO', ?, ?, ?, TRUE, ?)";
@@ -27,7 +26,6 @@ public class VeiculoDAO {
         }
     }
 
-    // Cadastra uma moto no banco
     public void cadastrarMoto(Moto moto) {
         String sql = "INSERT INTO veiculos (tipo, modelo, placa, valor_diaria, disponivel, cilindrada) "
                 + "VALUES ('MOTO', ?, ?, ?, TRUE, ?)";
@@ -43,7 +41,6 @@ public class VeiculoDAO {
         }
     }
 
-    // Lista todos os veículos disponíveis (que podem ser alugados)
     public List<Veiculo> listarDisponiveis() {
         List<Veiculo> lista = new ArrayList<>();
         String sql = "SELECT * FROM veiculos WHERE disponivel = TRUE ORDER BY id";
@@ -60,7 +57,6 @@ public class VeiculoDAO {
         return lista;
     }
 
-    // Lista todos os veículos (disponíveis ou não)
     public List<Veiculo> listarTodos() {
         List<Veiculo> lista = new ArrayList<>();
         String sql = "SELECT * FROM veiculos ORDER BY id";
@@ -77,7 +73,6 @@ public class VeiculoDAO {
         return lista;
     }
 
-    // Marca um veículo como alugado (disponivel = false) ou devolvido (true)
     public void atualizarDisponibilidade(int id, boolean disponivel) {
         String sql = "UPDATE veiculos SET disponivel = ? WHERE id = ?";
         try (Connection con = ConexaoBD.conectar();
@@ -90,9 +85,6 @@ public class VeiculoDAO {
         }
     }
 
-    // Monta o objeto certo (Carro ou Moto) a partir da linha do banco.
-    // Aqui é onde decidimos qual subclasse instanciar -> isso é HERANÇA/POLIMORFISMO
-    // refletido na camada de dados.
     private Veiculo montarVeiculo(ResultSet rs) throws SQLException {
         String tipo = rs.getString("tipo");
         Veiculo v;

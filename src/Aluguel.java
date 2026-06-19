@@ -13,8 +13,6 @@ public class Aluguel {
         this.cliente = cliente;
         this.veiculo = veiculo;
         this.dias = dias;
-        // POLIMORFISMO em ação: o método chamado é o mesmo,
-        // mas o comportamento muda dependendo se "veiculo" é um Carro ou uma Moto.
         this.valorTotal = veiculo.calcularValorAluguel(dias);
     }
 

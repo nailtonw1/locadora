@@ -28,7 +28,6 @@ public abstract class Veiculo {
                 + " | " + (disponivel ? "Disponível" : "Alugado");
     }
 
-    // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
